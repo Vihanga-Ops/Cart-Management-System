@@ -1,38 +1,72 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+:root {
+  --cream: #faf7f2;
+  --warm-white: #f5f0e8;
+  --parchment: #ede8de;
+  --bark: #2c2416;
+  --espresso: #1a110a;
+  --clay: #a0714f;
+  --terracotta: #c4714a;
+  --sage: #7a9e7e;
+  --dust: #9e9589;
+  --border: #e0d9ce;
+  --shadow-soft: 0 2px 20px rgba(44, 36, 22, 0.08);
+  --shadow-card: 0 4px 32px rgba(44, 36, 22, 0.12);
+  --radius: 14px;
+  --radius-sm: 8px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background-color: var(--cream);
+  font-family: 'DM Sans', sans-serif;
+  color: var(--bark);
+  min-height: 100vh;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.app {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+/* Full-width main — no sidebar */
+.main-layout {
+  width: 100%;
+  padding: 2.5rem 3rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Cart drawer overlay */
+.cart-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(44, 36, 22, 0.35);
+  z-index: 200;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.cart-overlay.overlay-visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--parchment); }
+::-webkit-scrollbar-thumb { background: var(--dust); border-radius: 99px; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes popIn {
+  0%   { transform: scale(0.92); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes slideLeft {
+  from { opacity: 0; transform: translateX(30px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
